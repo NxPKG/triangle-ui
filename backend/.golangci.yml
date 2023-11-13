@@ -1,0 +1,68 @@
+# See https://golangci-lint.run/usage/configuration/ for available options.
+# Also https://github.com/cilium/cilium/blob/master/.golangci.yaml as a
+# reference.
+run:
+  go: '1.20'
+  timeout: 3m
+  skip-dirs:
+    - tools
+linters:
+  disable-all: true
+  enable:
+    - asasalint
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - contextcheck
+    - decorder
+    - durationcheck
+    - errchkjson
+    - errname
+    - gocritic
+    - goerr113
+    - gofmt
+    - goimports
+    - goprintffuncname
+    - gosec 
+    - gosimple
+    - govet
+    - ineffassign
+    - interfacebloat
+    - makezero
+    - misspell
+    - nakedret
+    - nilerr
+    - noctx
+    - nosprintfhostport
+    - predeclared
+    - reassign
+    - revive
+    - staticcheck
+    - tenv
+    - typecheck
+    - unconvert
+    - unparam
+    - unused
+    - usestdlibvars
+    - wastedassign
+linters-settings:
+  gocritic:
+    disabled-checks:
+      - exitAfterDefer
+      - singleCaseSwitch
+  govet: 
+    enable-all: true
+    disable:
+      - fieldalignment
+      - shadow
+  revive:
+    rules:
+      - name: exported
+        disabled: true
+issues:
+  exclude-use-default: false # default rules exclude doc comments check :(
+  exclude-rules:
+    - linters: [goerr113]
+      text: "do not define dynamic errors, use wrapped static errors instead"
+    - linters: [gosec]
+      text: "G402: TLS InsecureSkipVerify may be true"

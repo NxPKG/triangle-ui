@@ -1,0 +1,47 @@
+@use 'sass:color';
+
+@import '~/styles/common/layout';
+
+.dragPanel {
+  @include row(center, center);
+
+  transition: all 0.25s ease-out;
+  height: 100%;
+
+  cursor: row-resize;
+  user-select: none;
+
+  &:hover {
+    background-color: color.adjust(#f6f6f6, $lightness: -3%);
+  }
+
+  &:active {
+    background-color: color.adjust(#f6f6f6, $lightness: -5%);
+    cursor: grabbing;
+  }
+}
+
+.left,
+.right {
+  flex: 1;
+  position: relative;
+}
+
+.left {
+  @include row(flex-start, center);
+
+  padding-left: 2.5px;
+}
+
+.center {
+  @include row(center, center);
+
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.right {
+  @include row(flex-start, center);
+
+  padding-right: 2.5px;
+}
